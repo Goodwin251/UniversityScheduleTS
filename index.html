@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Schedule</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <main class="center-block">
+        <div class="container">
+            <div class="container ">
+                <header class="blog-header">
+                    <div class="align-items-center">
+                        <div class="text-center">
+                            <h1 class="display-2">Розклад університету</h1>
+                        </div>
+
+                    </div>
+                </header>
+            </div>
+            <h2>Розклад</h2>
+            <table id="schedule-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID Пари</th>
+                        <th>ID Викладача</th>
+                        <th>Кабінет</th>
+                        <th>День тижня</th>
+                        <th>Час пари</th>
+                        <th>Тип пари</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <form id="add-lesson-form">
+                <h3>Додати Заняття</h3>
+
+                <label for="lesson-course">Курс:</label>
+                <select id="lesson-course" required></select>
+
+                <label for="lesson-professor">Професор:</label>
+                <select id="lesson-professor" required></select>
+
+                <label for="lesson-classroom">Аудиторія:</label>
+                <select id="lesson-classroom" required></select>
+
+                <label for="lesson-day">День тижня:</label>
+                <select id="lesson-day" required>
+                    <option value="Monday">Понеділок</option>
+                    <option value="Tuesday">Вівторок</option>
+                    <option value="Wednesday">Середа</option>
+                    <option value="Thursday">Четвер</option>
+                    <option value="Friday">П'ятниця</option>
+                </select>
+
+                <label for="lesson-timeslot">Час:</label>
+                <select id="lesson-timeslot" required>
+                    <option value="8:30-10:00">8:30-10:00</option>
+                    <option value="10:15-11:45">10:15-11:45</option>
+                    <option value="12:15-13:45">12:15-13:45</option>
+                    <option value="14:00-15:30">14:00-15:30</option>
+                    <option value="15:45-17:15">15:45-17:15</option>
+                </select>
+
+                <button type="submit">Додати Заняття</button>
+            </form>
+
+            <h2>Пари</h2>
+            <table id="course-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <form id="add-course-form">
+                <h3>Додати пару</h3>
+                <label for="course-name">Назва предмету:</label>
+                <input type="text" id="course-name" required>
+
+                <label for="course-type">Тип пари:</label>
+                <select id="course-type" required>
+                    <option value="Lecture">Лекція</option>
+                    <option value="Seminar">Семінар</option>
+                    <option value="Lab">Лабораторна</option>
+                    <option value="Practice">Практика</option>
+                </select>
+
+                <button type="submit">Додати пару</button>
+            </form>
+
+            <h2>Викладачі</h2>
+            <table id="professor-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ПІБ</th>
+                        <th>Кафедра</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h3>Додати викладача</h3>
+            <form id="add-professor-form">
+                <input type="number" id="professor-id-input" placeholder="ID" required />
+                <input type="text" id="professor-name" placeholder="ПІБ" required />
+                <input type="text" id="professor-department" placeholder="Кафедра" required />
+                <button type="submit">Додати викладача</button>
+            </form>
+  
+            <h2>Кабінети</h2>
+            <table id="classroom-table" border="1">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Місткість</th>
+                        <th>Має проектор</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <h3>Додати кабінет</h3>
+            <form id="add-classroom-form">
+                <input type="text" id="classroom-number" placeholder="Номер" required />
+                <input type="number" id="classroom-capacity" placeholder="Місткість" required />
+                <input type="checkbox" id="classroom-projector" /> Має проектор
+                <button type="submit">Додати викладача</button>
+            </form>
+        </div>
+        <div>
+            <h3>Отримати використання аудиторії</h3>
+            <label for="classroom-utilization-number">Номер аудиторії:</label>
+            <input type="text" id="classroom-utilization-number" />
+            <button id="get-utilization-button">Отримати використання</button>
+            <p id="utilization-result"></p>
+        </div>
+
+        <div>
+            <h3>Найпопулярніший тип курсу</h3>
+            <button id="get-popular-course-button">Отримати найпопулярніший тип курсу</button>
+            <p id="popular-course-result"></p>
+        </div>
+
+        <div>
+            <h3>Перенести заняття</h3>
+            <label for="lesson-id">ID заняття:</label>
+            <input type="number" id="lesson-id" />
+            <label for="new-classroom">Новий номер аудиторії:</label>
+            <input type="text" id="new-classroom" />
+            <button id="reassign-classroom-button">Перенести</button>
+            <p id="reassign-result"></p>
+        </div>
+
+        <div>
+            <h3>Скасувати заняття</h3>
+            <label for="cancel-lesson-id">ID заняття для скасування:</label>
+            <input type="number" id="cancel-lesson-id" />
+            <button id="cancel-lesson-button">Скасувати заняття</button>
+            <p id="cancel-result"></p>
+        </div>
+
+        <div>
+            <h3>Пошук вільних аудиторій</h3>
+            <label for="available-classroom-timeslot">Часовий слот:</label>
+            <select id="available-classroom-timeslot">
+                <option value="8:30-10:00">8:30-10:00</option>
+                <option value="10:15-11:45">10:15-11:45</option>
+                <option value="12:15-13:45">12:15-13:45</option>
+                <option value="14:00-15:30">14:00-15:30</option>
+                <option value="15:45-17:15">15:45-17:15</option>
+            </select>
+
+            <label for="available-classroom-day">День тижня:</label>
+            <select id="available-classroom-day">
+                <option value="Monday">Понеділок</option>
+                <option value="Tuesday">Вівторок</option>
+                <option value="Wednesday">Середа</option>
+                <option value="Thursday">Четвер</option>
+                <option value="Friday">Пʼятниця</option>
+                <option value="Saturday">Субота</option>
+                <option value="Sunday">Неділя</option>
+            </select>
+
+            <button id="find-available-classrooms-button">Знайти вільні аудиторії</button>
+            <p id="available-classroom-result"></p>
+        </div>
+
+        <div>
+            <h3>Розклад професора</h3>
+            <label for="professor-id-schedule">ID професора:</label>
+            <input type="number" id="professor-id-schedule" />
+
+            <button id="get-professor-schedule-button">Отримати розклад</button>
+            <div id="professor-schedule-result"></div>
+        </div>
+    </main>
+    <footer class="blog-footer">
+        <p>Developed by Solodkyi Yaroslav</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+
+    <!-- Підключення скомпільованого TypeScript коду -->
+    <script src="dist/index.js" type="module"></script>
+    <script src="dist/schedule.js" type="module"></script>
+    <script src="dist/types.js" type="module"></script>
+</body>
+
+</html>
